@@ -6,6 +6,7 @@
 </NavItem> */
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Collapse,
   Navbar,
@@ -40,7 +41,7 @@ export class Header extends React.Component {
       <header>  
         <Navbar  color="light" light expand="md" className="border-bottom border-gray bg-white">
         <Container>
-          <NavbarBrand href="/">reactstrap</NavbarBrand>
+          <NavbarBrand tag={Link} to="/">eNetworks</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -50,7 +51,7 @@ export class Header extends React.Component {
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/components/">Components</NavLink>
+                <NavLink tag = {Link} to="/survey">Survey</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
