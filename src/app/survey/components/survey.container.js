@@ -1,10 +1,24 @@
-import React from 'react';
+import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import { getSurvey } from '../actions/survey.actions';
 import { Container } from 'reactstrap';
 
-export const Survey = () => {
+class Survey extends Component {
+    componentDidMount() {
+        this.props.getSurvey();
+    }
+   render(){
+       if(this.props.survey)
+          console.log(this.props.survey);
     return (
         <Container className="mt-2">
            <a>Test</a>
         </Container>
-    )
+     )
+  }
 }
+
+function mapState({survey}) {
+    return {survey : survey}
+}
+export default connect(mapState, {getSurvey})(Survey);

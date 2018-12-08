@@ -8,16 +8,18 @@
     "moment": "^2.22.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
+    "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
-    "reactstrap": "^6.5.0"
+    "reactstrap": "^6.5.0",
+    "redux": "^4.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "fakeserver" : ".\\node_modules\\.bin\\json-server -p 4000 --watch .\\mockdata\\db.json"
+    "fakeserver": ".\\node_modules\\.bin\\json-server -p 4000 --watch .\\mockdata\\db.json"
   },
   "eslintConfig": {
     "extends": "react-app"

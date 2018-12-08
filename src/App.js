@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Header} from './app/shared/header.component';
 import { PostList } from './app/post/components/post-list.container';
-import { Survey } from './app/survey/components/survey.container';
+import  Survey  from './app/survey/components/survey.container';
 import { Footer } from './app/shared/footer.componet';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './App.css';
