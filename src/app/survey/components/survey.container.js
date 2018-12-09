@@ -4,6 +4,7 @@ import { getSurvey } from '../actions/survey.actions';
 import { Container } from 'reactstrap';
 import { GET_SURVEY_REQUEST } from '../sagas/survey.sagas';
 
+
 const OPEN = 'open';
 const EXCLUSIVE = 'exclusive';
 const MULTIPLE = 'multiple';
