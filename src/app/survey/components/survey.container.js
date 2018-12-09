@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { getSurvey } from '../actions/survey.actions';
 import { Container } from 'reactstrap';
 import { GET_SURVEY_REQUEST } from '../sagas/survey.sagas';
 import { Field, reduxForm } from 'redux-form';
 
 const validateComment = (value, allValues, props) => {
+    console.log("validate",value);
     if (!value) return "Can't be empty."
   }
 const OPEN = 'open';
@@ -21,11 +21,11 @@ class Survey extends Component {
        this.props.onRequestSurvey();
     }
     renderSurvey = () => {
-        const { error, handleSubmit, pristine, reset, submitting } = this.props;
+        const { error, handleSubmit, pristine, reset, submitting , invalid } = this.props;
         return(
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 {this.renderPack()}
-                <button type="submit" disabled={submitting} className="btn">Submit</button>
+                <button type="submit" disabled={submitting || invalid } className="btn">Submit</button>
             </form>
         )
     }
@@ -53,35 +53,34 @@ class Survey extends Component {
        switch(type) {
            case OPEN :
               return (
-                <Field name={questionID + "s"} validate={validateComment}component={this.renderTextArea} />
+                <Field name={questionID + "s"} validate={validateComment} component={this.renderTextArea} />
                /* <div className="form-group">
                     <textarea className="form-control mt-2" id="text_response" rows="3"></textarea>
                 </div> */
             )
-            case MULTIPLE:
-                return(
-                    answers.map((item) => {
-                    return(
-                        <div key={item.id} className="form-check mt-1">
-                            <input className="form-check-input" type="checkbox" value={item.id} id={item.id} />
-                            <label className="form-check-label" htmlFor={item.id}>
-                                {item.response}
-                            </label>
-                        </div>)
-                    })
-                )
+            
             case EXCLUSIVE :
             return(
                 answers.map((item) => {
                 return(
                     <div key={item.id} className="form-check mt-1">
-                       <input className="form-check-input" type="radio" name={questionID} id={item.id} value="option1"/>
+                       <input className="form-check-input" type="radio" name={questionID} id={item.id} value={item.id}/>
                         <label className="form-check-label" htmlFor={item.id}>
                             {item.response}
                         </label>
                     </div>)
                 })
             )
+            
+            case MULTIPLE:
+                return(
+                    answers.map((item) => {
+                    return(
+                        <div key={item.id} className="form-check mt-1">
+                            <Field name={item.id + "-" + questionID} validate={validateComment} dataResponse={item.response} dataId={item.id} component={this.renderCheckBox} />
+                        </div>)
+                    })
+                )
             
        }
     }
@@ -90,13 +89,30 @@ class Survey extends Component {
         const className = "form-group " +  (touched && error) ? 'has-error' : '' ;
         return(
             <div className={className}>
-            <a>Sticaz</a>
                 <textarea className="form-control mt-2" id="text_response" rows="3" {...field.input}></textarea>
                 <div className="text-help">
                  {touched ? error : ''}
                 </div>
             </div>
         )
+    }
+
+    renderCheckBox(field) {
+        const { meta : { touched,error }} = field;
+        const className = "form-checkt mt-1 " +  (touched && error) ? 'has-error' : '' ;
+        return(
+            <div key={field.dataId} className={className}>
+                        <input className="form-check-input" type="checkbox" value={field.dataId} id={field.dataId} {...field.input} />
+                            <label className="form-check-label" htmlFor={field.dataId}>
+                                {field.dataResponse}
+                            </label>
+                            <div className="text-help">
+                            {touched ? error : ''}
+                        </div>
+             </div>
+             )
+        
+        
     }
     onSubmit(values) {
         console.log(values);
@@ -106,6 +122,7 @@ class Survey extends Component {
     return (
         <Container className="mt-2">
            <h2>Survey</h2>
+           <hr />
            { survey ? this.renderSurvey() : (null)}
         </Container>
      )
