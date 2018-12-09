@@ -3,11 +3,17 @@
       { 
           "question": { "id" : 1, "title" : "Chi è IronMan?" , "type" : "open" }
       }, 
-      { "question": { "id" : 2, "title" : "Chi è IronMan?" , "type" : "multiple" },
+      { "question": { "id" : 2, "title" : "Chi è IronMan?" , "type" : "exclusive" },
         "answers" :[
               { "response" : "avengers" , "id" : 1},
               { "response" : "defenders" , "id" : 2}
         ]
+      },
+      { "question": { "id" : 3, "title" : "Cos'è redux?" , "type" : "multiple" },
+      "answers" :[
+            { "response" : "state management" , "id" : 3},
+            { "response" : "library" , "id" : 4}
+       ]
       }
     ]
   }

@@ -8,8 +8,6 @@ class Survey extends Component {
         this.props.getSurvey();
     }
    render(){
-       if(this.props.survey)
-          console.log(this.props.survey);
     return (
         <Container className="mt-2">
            <a>Test</a>
