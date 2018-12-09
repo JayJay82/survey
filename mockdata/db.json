@@ -1,7 +1,7 @@
 {
     "package": [
       { 
-          "question": { "id" : 1, "title" : "Chi è IronMan?" , "type" : "open" }
+          "question": { "id" : 1, "title" : "Chi sono gli Avengers?" , "type" : "open" }
       }, 
       { "question": { "id" : 2, "title" : "Chi è IronMan?" , "type" : "exclusive" },
         "answers" :[

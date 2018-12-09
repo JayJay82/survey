@@ -3,7 +3,7 @@ import { GET_SURVEY_ERROR , GET_SURVEY_REQUEST , GET_SURVEY_SUCCESS} from '../sa
 export default (state =  {}, action) => {
     switch(action.type) {
         case GET_SURVEY_REQUEST : 
-          return { ...state, fetching : true, error: null};
+          return { ...state, fetching : true,result:null, error: null};
         case GET_SURVEY_SUCCESS :
           return {...state , fetching : false, result : action.payload};
         case GET_SURVEY_ERROR:
